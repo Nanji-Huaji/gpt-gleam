@@ -18,6 +18,8 @@ class MinimumDelay:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         end = time.time()
+        if self.start is None:
+            raise RuntimeError("MinimumDelay context manager was not entered properly.")
         seconds = end - self.start
         if self.delay > seconds:
             time.sleep(self.delay - seconds)

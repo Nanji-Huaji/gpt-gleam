@@ -22,7 +22,8 @@ class JsonlPredictionsWriter:
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.file.close()
+        if self.file is not None:
+            self.file.close()
 
     def add(self, pred: dict):
         self.file.write(json.dumps(pred) + "\n")

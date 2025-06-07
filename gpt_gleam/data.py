@@ -12,6 +12,7 @@ import ujson as json
 import unidecode
 from enum import Enum
 
+import json
 
 # compile regexes
 username_regex = re.compile(r"(^|[^@\w])@(\w{1,15})\b")
@@ -34,6 +35,10 @@ class TweetPreprocessConfig:
     standardize_punctuation: bool = True
     remove_unicode_symbols: bool = True
     remove_accented_characters: bool = False
+
+@dataclasses.dataclass
+class EmotionReasonConfig:
+    pass
 
 
 def preprocess_tweet(text: str, args: TweetPreprocessConfig):
@@ -207,6 +212,9 @@ class Stance(str, Enum):
     No_Stance = "No Stance"
     Not_Relevant = "Not Relevant"
 
+class Emotion(str, Enum):
+    Happy = "Happy"
+    
 
 STANCE_ORDER = [Stance.Accept, Stance.Reject, Stance.No_Stance, Stance.Not_Relevant]
 

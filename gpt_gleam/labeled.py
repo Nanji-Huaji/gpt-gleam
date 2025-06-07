@@ -24,7 +24,8 @@ def main(
     creator = ChatContextCreator(config)
     client = OpenAI(
         api_key=os.getenv("OPENAI_API_KEY"),
-        timeout=os.getenv("OPENAI_TIMEOUT", 90),
+        timeout=float(os.getenv("OPENAI_TIMEOUT", 90)),
+        base_url=os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1"),
     )
 
     if total is None:
